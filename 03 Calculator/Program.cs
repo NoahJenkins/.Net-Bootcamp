@@ -22,17 +22,19 @@ while (continueCalculating)
         double result = 0;
         bool validOperation = true;
 
+        // Switch statement: evaluates the 'operation' variable and executes matching case
         switch (operation)
         {
+            // Case: defines a specific value to match against the switch expression
             case "+":
                 result = num1 + num2;
-                break;
+                break; // Break: exits the switch statement to prevent fall-through to next case
             case "-":
                 result = num1 - num2;
-                break;
+                break; // Break: exits the switch statement
             case "*":
                 result = num1 * num2;
-                break;
+                break; // Break: exits the switch statement
             case "/":
                 if (num2 != 0)
                 {
@@ -43,11 +45,12 @@ while (continueCalculating)
                     Console.WriteLine("Error: Division by zero is not allowed!");
                     validOperation = false;
                 }
-                break;
+                break; // Break: exits the switch statement
+            // Default: executes when no case matches the switch expression
             default:
                 Console.WriteLine("Error: Invalid operator!");
                 validOperation = false;
-                break;
+                break; // Break: exits the switch statement (optional for default case)
         }
 
         if (validOperation)
@@ -64,6 +67,7 @@ while (continueCalculating)
         Console.WriteLine($"An error occurred: {ex.Message}");
     }
 
+    // \n is an escape sequence that creates a new line (line break) in the output
     Console.Write("\nDo you want to perform another calculation? (y/n): ");
     string? response = Console.ReadLine()?.ToLower();
     continueCalculating = response == "y" || response == "yes";
