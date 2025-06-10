@@ -29,4 +29,7 @@ char character = 'A'; // Declare a character variable
 Console.WriteLine(character); // Output the character value
 
 
+string ageValue = "23"; // Declare a string variable to store age as a string
 
+int ageNewValue = Convert.ToInt32(ageValue); // Convert the string to an integer    
+Console.WriteLine($"Converted age: {ageNewValue}"); // Output the converted age
