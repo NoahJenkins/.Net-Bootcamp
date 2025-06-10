@@ -20,7 +20,10 @@ class Program
     static void Main()
     {
         Console.CursorVisible = false;
-        Console.SetWindowSize(width + 20, height + 10);
+        
+        Console.WriteLine("Welcome to Snake Game!");
+        Console.WriteLine("Use arrow keys to move. Press any key to start...");
+        Console.ReadKey(true);
         
         snake.Add((headX, headY));
         GenerateFood();
@@ -38,8 +41,9 @@ class Program
             Thread.Sleep(200);
         }
         
-        Console.SetCursorPosition(0, height + 2);
-        Console.WriteLine($"Game Over! Final Score: {score}");
+        Console.Clear();
+        Console.WriteLine("=== GAME OVER ===");
+        Console.WriteLine($"Final Score: {score}");
         Console.WriteLine("Press any key to exit...");
         Console.ReadKey();
     }
@@ -59,6 +63,9 @@ class Program
                 break;
             case ConsoleKey.RightArrow:
                 if (direction != "LEFT") direction = "RIGHT";
+                break;
+            case ConsoleKey.Escape:
+                gameOver = true;
                 break;
         }
     }
@@ -116,36 +123,72 @@ class Program
     {
         Console.Clear();
         
+        // Create a 2D char array to represent the game board
+        char[,] board = new char[height + 2, width + 2];
+        
+        // Initialize with spaces
+        for (int i = 0; i < height + 2; i++)
+        {
+            for (int j = 0; j < width + 2; j++)
+            {
+                board[i, j] = ' ';
+            }
+        }
+        
         // Draw borders
         for (int i = 0; i < width + 2; i++)
         {
-            Console.SetCursorPosition(i, 0);
-            Console.Write("#");
-            Console.SetCursorPosition(i, height + 1);
-            Console.Write("#");
+            board[0, i] = '#';
+            board[height + 1, i] = '#';
         }
         for (int i = 0; i < height + 2; i++)
         {
-            Console.SetCursorPosition(0, i);
-            Console.Write("#");
-            Console.SetCursorPosition(width + 1, i);
-            Console.Write("#");
+            board[i, 0] = '#';
+            board[i, width + 1] = '#';
         }
         
         // Draw snake
         foreach (var segment in snake)
         {
-            Console.SetCursorPosition(segment.x + 1, segment.y + 1);
-            Console.Write("O");
+            if (segment.x >= 0 && segment.x < width && segment.y >= 0 && segment.y < height)
+            {
+                board[segment.y + 1, segment.x + 1] = 'O';
+            }
         }
         
         // Draw food
-        Console.SetCursorPosition(foodX + 1, foodY + 1);
-        Console.Write("*");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}    }        Console.WriteLine($"\nScore: {score}");                }            Console.WriteLine();            }                Console.Write(board[i, j]);            {            for (int j = 0; j < width + 2; j++)        {        for (int i = 0; i < height + 2; i++)        // Print the board                }            board[foodY + 1, foodX + 1] = '*';        {        if (foodX >= 0 && foodX < width && foodY >= 0 && foodY < height)        }
         
-        // Draw score
-        Console.SetCursorPosition(0, height + 3);
+        // Print the board
+        for (int i = 0; i < height + 2; i++)
+        {
+            for (int j = 0; j < width + 2; j++)
+            {
+                Console.Write(board[i, j]);
+            }
+            Console.WriteLine();
+        }
+        
+        // Draw score and instructions
         Console.WriteLine($"Score: {score}");
-        Console.WriteLine("Use arrow keys to move. Press any key to start/continue...");
+        Console.WriteLine("Use arrow keys to move. Press ESC to quit.");
     }
 }
