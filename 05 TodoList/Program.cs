@@ -38,7 +38,14 @@ while (isRunning)
     if (isRunning)
     {
         Console.WriteLine("\nPress any key to continue...");
-        Console.ReadKey();
+        if (Console.IsInputRedirected)
+        {
+            Console.ReadLine();
+        }
+        else
+        {
+            Console.ReadKey();
+        }
         Console.Clear();
     }
 }

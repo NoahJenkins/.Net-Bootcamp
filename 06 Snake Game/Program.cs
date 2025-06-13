@@ -23,7 +23,14 @@ class Program
         
         Console.WriteLine("Welcome to Snake Game!");
         Console.WriteLine("Use arrow keys to move. Press any key to start...");
-        Console.ReadKey(true);
+        if (!Console.IsInputRedirected)
+        {
+            Console.ReadKey(true);
+        }
+        else
+        {
+            Console.ReadLine();
+        }
         
         snake.Add((headX, headY));
         GenerateFood();
@@ -45,7 +52,14 @@ class Program
         Console.WriteLine("=== GAME OVER ===");
         Console.WriteLine($"Final Score: {score}");
         Console.WriteLine("Press any key to exit...");
-        Console.ReadKey();
+        if (!Console.IsInputRedirected)
+        {
+            Console.ReadKey();
+        }
+        else
+        {
+            Console.ReadLine();
+        }
     }
     
     static void ChangeDirection(ConsoleKeyInfo key)
@@ -175,7 +189,11 @@ class Program
 
 
 
-}    }        Console.WriteLine($"\nScore: {score}");                }            Console.WriteLine();            }                Console.Write(board[i, j]);            {            for (int j = 0; j < width + 2; j++)        {        for (int i = 0; i < height + 2; i++)        // Print the board                }            board[foodY + 1, foodX + 1] = '*';        {        if (foodX >= 0 && foodX < width && foodY >= 0 && foodY < height)        }
+        // Draw food
+        if (foodX >= 0 && foodX < width && foodY >= 0 && foodY < height)
+        {
+            board[foodY + 1, foodX + 1] = '*';
+        }
         
         // Print the board
         for (int i = 0; i < height + 2; i++)

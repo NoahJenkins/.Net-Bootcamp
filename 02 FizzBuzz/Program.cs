@@ -28,4 +28,11 @@ for (int i = 1; i <= 100; i++)
 }
 
 Console.WriteLine("\nPress any key to exit...");
-Console.ReadKey();
+if (Console.IsInputRedirected)
+{
+    Console.ReadLine();
+}
+else
+{
+    Console.ReadKey();
+}
